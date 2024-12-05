@@ -3,28 +3,47 @@
 import time
 import cv2 as computerVision
 import numpy as numpy
-import leoSexualityIdentifier
+import keyboard
+import funciones
 
-#variables modificables
+print("1")
+
+# variables modificables
 fps = 5
 defaultWebCam = 0 # 0 communmente es la default
-exitKey = "q"
+pressedKey = 'a'
 
-videoEnVivo = computerVision.VideoCapture(defaultWebCam)
+videoEnVivo = computerVision.VideoCapture(defaultWebCam) # captura objeto en videoEnVivo
 
-capturaExitosa, frame =  videoEnVivo.read()
+while True:
 
-while capturaExitosa:
+    capturaExitosa, frame =  videoEnVivo.read() # agarra un boolean (el exito) y un array (el frame)
+    computerVision.imshow("LeoGayCam", frame) # actualiza el window
+    pressedKey = computerVision.waitKey(1000//fps)
+    
+    # permite controlar el programa con teclas
+    if pressedKey == ord('q'): # sale del programa si se presiona q
+        print("STAWWWWP")
+        break
+    
+    if pressedKey == ord('w'): # suma un fps al programa
+        if fps == 240:
+            print("cant go above 240 buddie >:V")
+        else:
+            fps = (fps+1)
+            print(f"fps = {fps}")
+    elif pressedKey == ord('s'): # resta un fps al programa
+        if fps == 1:
+            print("cant go below 0 buddie >:V")
+        else:
+            fps = (fps-1)
+            print(f"fps = {fps}")    
 
-    capturaExitosa, frame =  videoEnVivo.read()
-    computerVision.imshow("LeoGayCam", frame) #actualiza el window
-    computerVision.waitKey(1000//fps)  #hace delay de 1000 milisegundos entre los fps
+    #fps = funciones.fpsModificator(pressedKey, fps) #### QUIEN SABE PORQUE NO FUNCIONA ####
 
-    if capturaExitosa == False:
+    # checkeo de exito de la captura
+    if capturaExitosa == False: #si no es exitosa, se rompe
         print("Se rompio bro, perdon :()")
         break
 
-
-
-print("1")
 print("2")
