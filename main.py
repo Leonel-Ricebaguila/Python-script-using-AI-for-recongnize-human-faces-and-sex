@@ -12,12 +12,11 @@ print("1")
 fps = 5
 defaultWebCam = 0 # 0 communmente es la default
 pressedKey = 'a'
-
-videoEnVivo = computerVision.VideoCapture(defaultWebCam) # captura objeto en videoEnVivo
+videoCapturado = computerVision.VideoCapture(defaultWebCam) # captura objeto en videoEnVivo
 
 while True:
 
-    capturaExitosa, frame =  videoEnVivo.read() # agarra un boolean (el exito) y un array (el frame)
+    capturaExitosa, frame =  videoCapturado.read() # agarra un boolean (el exito) y un array (el frame)
     computerVision.imshow("LeoGayCam", frame) # actualiza el window
     pressedKey = computerVision.waitKey(1000//fps)
     
