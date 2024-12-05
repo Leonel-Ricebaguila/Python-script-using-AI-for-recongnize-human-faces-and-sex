@@ -6,17 +6,23 @@ import numpy as numpy
 import leoSexualityIdentifier
 
 #variables modificables
-fps = 10
+fps = 5
+defaultWebCam = 0 # 0 communmente es la default
+exitKey = "q"
 
+videoEnVivo = computerVision.VideoCapture(defaultWebCam)
 
+capturaExitosa, frame =  videoEnVivo.read()
 
-videoEnVivo = computerVision.VideoCapture(0)
+while capturaExitosa:
 
-while True:
-    ret, frame =  videoEnVivo.read()
+    capturaExitosa, frame =  videoEnVivo.read()
+    computerVision.imshow("LeoGayCam", frame) #actualiza el window
+    computerVision.waitKey(1000//fps)  #hace delay de 1000 milisegundos entre los fps
 
-    computerVision.imshow("LeoGayCam", frame)
-    computerVision.waitKey(1000//fps)
+    if capturaExitosa == False:
+        print("Se rompio bro, perdon :()")
+        break
 
 
 
