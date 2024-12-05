@@ -19,16 +19,15 @@ while True:
     capturaExitosa, frame =  videoCapturado.read() # agarra un boolean (el exito) y un array (el frame)
     computerVision.imshow("LeoGayCam", frame) # actualiza el window
     pressedKey = computerVision.waitKey(1000//fps) & 0xFF
+      
     # permite controlar el programa con teclas
-    
-    if (funciones.stopCapturing(pressedKey)) or 1==1: # sale del programa si se presiona q
+    if (funciones.stopCapturing(pressedKey)): # sale del programa si se presiona q
         break
-
-    fps = funciones.fpsModificator(pressedKey, fps) 
+    fps = funciones.fpsModificator(pressedKey, fps) # suma con w y resta con s
 
     # checkeo de exito de la captura
     if capturaExitosa == False: #si no es exitosa, se rompe
-        print("Se rompio bro, perdon :()")
+        print("No se detecta camara bro, perdon :()")
         break
 
 print("2")
